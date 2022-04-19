@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import ProtoTypes from 'prop-types';
 import { Avatar, Button, Card } from 'antd';
 
 const UserProfile = ({ setIsLoggedIn }) => {
@@ -22,6 +23,10 @@ const UserProfile = ({ setIsLoggedIn }) => {
             <Button onClick={onLogOut}>로그아웃</Button>
         </Card>
     );
+}
+
+UserProfile.propTypes = {
+    setIsLoggedIn : ProtoTypes.func.isRequired,
 }
 
 export default UserProfile;

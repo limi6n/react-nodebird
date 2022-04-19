@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import ProtoTypes from 'prop-types';
 import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
+import useInput from '../hooks/useInput';
 
 const ButtonWrapper = styled.div`
     margin-top: 10px;
@@ -13,17 +14,8 @@ const FormWrapper = styled(Form)`
 `;
 
 const LoginForm = ({ setIsLoggedIn }) => {
-    const [id, setId] = useState('');
-    const [password, setPassword] = useState('');
-
-    // 컴포넌트에 props 으로 넘겨주는 함수는 useCallback 꼭 쓰기 -> 그래야 최적화가 된다 
-    const onChangeId = useCallback((e) => {
-        setId(e.target.value);
-    }, []);
-
-    const onChangePassword = useCallback((e) => {
-        setPassword(e.target.value);
-    }, []);
+    const [id, onChangeId] = useInput('');
+    const [password, onChangePassword] = useInput('');
 
     const onSubmitForm = useCallback(() => {
         // antd 의 onFinish 에는 e.preventDefault() 가 적용되어있다. 
@@ -51,8 +43,8 @@ const LoginForm = ({ setIsLoggedIn }) => {
     )
 }
 
-LoginForm.protoTypes = {
-    setIsLoggedIn : ProtoTypes.node.isRequired,
+LoginForm.propTypes = {
+    setIsLoggedIn : ProtoTypes.func.isRequired,
 }
 
 export default LoginForm;
