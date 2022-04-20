@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../reducers/post';
-import { useRef } from '../.next/static/chunks/pages/signup';
 
 const PostForm = () => {
     const { imagePaths } = useSelector((state) => state.post);
